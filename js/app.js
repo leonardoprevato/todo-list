@@ -1,12 +1,20 @@
-console.log('collegato!');
+
+var toDoEntryBox = document.getElementById('todo-entry-box');
+toDoEntryBox.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addToDoItem();
+  }
+});
+
 
 let addButton = document.getElementById('add-button');
-addButton.addEventListener('click', function(){
+addButton.addEventListener('click', function () {
   addToDoItem();
 });
 
 let clearButton = document.getElementById('clear-completed-button');
-clearButton.addEventListener('click', function(){
+clearButton.addEventListener('click', function () {
   clearCompletedToDoItems();
 });
 
@@ -16,87 +24,140 @@ emptyButton.addEventListener('click', emptyList);
 let saveButton = document.querySelector('#save-button');
 saveButton.addEventListener('click', saveList);
 
-
-
 // variabile del selettore HTML che ho come id todo-entry-box
 var toDoEntryBox = document.getElementById('todo-entry-box');
 
 // variabile del selettore HTML che ha come id todo-list
 var toDoList = document.getElementById('todo-list');
+/* liste */
+var spesaList = document.getElementById('spesa-list');
+var compitiList = document.getElementById('compiti-list');
+var coseDaFareList = document.getElementById('cose_da_fare-list');
 
-function newToDoItem(itemText, completed){
+function newToDoItem(itemText, completed) {
   let toDoItem = document.createElement('li');
   let toDoText = document.createTextNode(itemText);
 
   toDoItem.appendChild(toDoText);
 
-  if(completed){
+  if (completed) {
     toDoItem.classList.add('completed');
   }
-  
+
   toDoList.appendChild(toDoItem);
   toDoItem.addEventListener('dblclick', toggleToDoItemState);
 }
 
-function addToDoItem(){
+/* funzione timer */
+function timer() {
+  let itemText = toDoEntryBox.value;
+  if (toDoEntryBox.value !== "") {
+    addToDoItem()
+    saveList()
+    newToDoItem(itemText, false)
+  }
+}
+timer();
+setInterval(timer, 1000);
+
+/* funzione timer */
+
+function addToDoItem() {
   let itemText = toDoEntryBox.value;
   newToDoItem(itemText, false);
 }
 
-function toggleToDoItemState(){
-  if(this.classList.contains('completed')){
+function toggleToDoItemState() {
+  if (this.classList.contains('completed')) {
     this.classList.remove('completed');
   }
-  else{
+  else {
     this.classList.add('completed');
   }
 }
 
-function clearCompletedToDoItems(){
+function clearCompletedToDoItems() {
   let completedItems = toDoList.getElementsByClassName('completed');
 
-  while(completedItems.length > 0){
+  while (completedItems.length > 0) {
     completedItems.item(0).remove();
   }
 }
 
-function emptyList(){
+function emptyList() {
   let toDoItems = toDoList.children;
 
-  while(toDoItems.length > 0){
+  while (toDoItems.length > 0) {
     toDoItems.item(0).remove();
   }
+
 }
 
+let intervallo = setInterval(addToDoItem, 1000)
+if (toDoEntryBox.value === "") {
+  clearInterval(intervallo)
+} else {
+  intervallo
+}
 
-function saveList(){
+let select = document.getElementById("my-lists");
+
+
+function saveList() {
+  /*   select.addEventListener("change", function (event) {
+      console.log(event.target.value);
+      if (event.target.value === "spesa") {
+  
+      }
+    }); */
   let toDos = [];
-
-  for(let i = 0; i < toDoList.children.length; i++){
+  for (let i = 0; i < toDoList.children.length; i++) {
     let toDo = toDoList.children.item(i);
-
     var toDoInfo = {
-      "task" : toDo.innerText,
-      "completed" : toDo.classList.contains('completed')
+      "task": toDo.innerText,
+      "completed": toDo.classList.contains('completed')
     };
-
     toDos.push(toDoInfo);
-    
   }
   console.log(toDos);
-
   localStorage.setItem('toDos', JSON.stringify(toDos));
+
+
+  /* let toDos = [];
+  for (let i = 0; i < toDoList.children.length; i++) {
+    let toDo = toDoList.children.item(i);
+    var toDoInfo = {
+      "task": toDo.innerText,
+      "completed": toDo.classList.contains('completed')
+    };
+    toDos.push(toDoInfo);
+  }
+  console.log(toDos);
+  localStorage.setItem('toDos', JSON.stringify(toDos)); */
 }
 
-function loadList(){
-  if(localStorage.getItem('toDos') != null){
+
+function loadList() {
+  if (localStorage.getItem('toDos') != null) {
     let toDos = JSON.parse(localStorage.getItem('toDos'));
 
-    for(let i = 0; i < toDos.length; i++){
+    for (let i = 0; i < toDos.length; i++) {
       let toDo = toDos[i];
       newToDoItem(toDo.task, toDo.completed);
     }
   }
 }
-
 loadList();
+
+
+
+
+
+
+
+
+
+
+
+
+
