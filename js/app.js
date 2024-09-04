@@ -48,6 +48,8 @@ function newToDoItem(itemText, completed) {
   toDoItem.addEventListener('dblclick', toggleToDoItemState);
 }
 
+
+// implementazione funzione timer per salvare automaticamente items visibili a salvataggio nel localStorage
 /* funzione timer */
 function timer() {
   let itemText = toDoEntryBox.value;
