@@ -113,8 +113,6 @@ function saveList() {
         console.log(toDos);
 
         localStorage.setItem('toDos', JSON.stringify(toDos));
-
-
         break;
 
       case "spesa":
