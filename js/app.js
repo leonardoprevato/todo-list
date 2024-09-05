@@ -49,17 +49,19 @@ function newToDoItem(itemText, completed) {
 }
 
 
-// implementazione funzione timer per salvare automaticamente items visibili a salvataggio nel localStorage
 /* funzione timer */
 function timer() {
-  let itemText = toDoEntryBox.value;
   if (toDoEntryBox.value !== "") {
-    addToDoItem()
-    saveList()
-    newToDoItem(itemText, false)
+    try {
+      addToDoItem()
+      saveList()
+    } catch (error) {
+      console.log(error);
+
+    }
+
   }
 }
-timer();
 setInterval(timer, 1000);
 
 /* funzione timer */
@@ -106,12 +108,12 @@ let select = document.getElementById("my-lists");
 
 
 function saveList() {
-  /*   select.addEventListener("change", function (event) {
-      console.log(event.target.value);
-      if (event.target.value === "spesa") {
-  
-      }
-    }); */
+  select.addEventListener("change", function (event) {
+    console.log(event.target.value);
+    if (event.target.value === "spesa") {
+
+    }
+  });
   let toDos = [];
   for (let i = 0; i < toDoList.children.length; i++) {
     let toDo = toDoList.children.item(i);
