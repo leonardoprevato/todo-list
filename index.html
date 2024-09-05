@@ -15,18 +15,28 @@
     <form name="todo-adder">
       <input type="text" id="todo-entry-box">
     </form>
+    <label for="my-lists">Scegli</label>
+    <select name="" id="my-lists">
+      <option value="to-do">To Do</option>
+      <option value="spesa">Spesa</option>
+      <option value="compiti">Compiti</option>
+      <option value="cose-da-fare">Cose da fare</option>
+    </select>
     <button id="add-button" class="pretty-button">Add</button>
-
-    <ol id="todo-list">
-
-    </ol>
+    <ol id="todo-list"></ol>
 
     <div id="control-wrapper">
       <button id="clear-completed-button" class="pretty-button">Delete completed</button>
       <button id="empty-button" class="pretty-button">Delete all</button>
       <button id="save-button" class="pretty-button">Save list</button>
+      <button id="stop-button" class="pretty-button">Stop</button>
+      <button id="select-button" class="pretty-button">Seleziona</button>
     </div>
 
+  </section>
+  <section id="view-list">
+    <h3 id="title"></h3>
+    <div id="show-list"></div>
   </section>
   <script src="js/app.js"></script>
 </body>

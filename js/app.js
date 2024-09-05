@@ -167,7 +167,6 @@ function saveList() {
   });
 }
 
-
 function loadList() {
   if (localStorage.getItem('toDos') != null) {
     let toDos = JSON.parse(localStorage.getItem('toDos'));  
