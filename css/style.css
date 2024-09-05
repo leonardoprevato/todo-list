@@ -10,13 +10,13 @@
 }
 */
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -24,22 +24,24 @@ body{
   background-color: #ddd;
 }
 
-.todo-wrapper{
+.todo-wrapper {
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
   font-weight: 300;
 }
-.todo-wrapper h1{
+
+.todo-wrapper h1 {
   margin: 0;
 }
-.todo-wrapper p{
+
+.todo-wrapper p {
   color: #666;
   margin: 5px 0;
 }
 
-button{
+button {
   font-family: "Anta", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -47,7 +49,7 @@ button{
   font-size: 18px;
 }
 
-ol{
+ol {
   margin: 20px 0;
   padding: 50px;
 }
@@ -57,43 +59,57 @@ ol li {
   padding: 3px;
   transition: all 0.5s ease-out;
 }
-ol li:nth-child(even){
+
+ol li:nth-child(even) {
   background-color: #ddd;
 }
 
-.completed{
+.completed {
   text-decoration: line-through;
   color: #666;
 }
 
-.pretty-button{
+.pretty-button {
   margin: 10px 2px;
   padding: 5px 20px;
   border-radius: 5px;
   background-color: rgb(21, 75, 239);
-  color:#fff;
+  color: #fff;
   text-align: center;
   display: inline-block;
 }
 
-.pretty-button:hover{
+.pretty-button:hover {
   cursor: pointer;
   opacity: 0.75;
 }
 
-form{
+form {
   display: inline-block;
 }
-input{
+
+input {
   padding: 6px 6px;
 }
 
-#clear-completed-button{
+#clear-completed-button {
   background-color: orange;
 }
-#empty-button{
+
+#empty-button {
   background-color: red;
 }
-#save-button{
+
+#save-button {
   background-color: green;
+}
+
+#my-lists {
+  padding: 6px;
+}
+
+#show-list {
+  width: 500px;
+  height: 600px;
+  border: 1px solid red;
 }
