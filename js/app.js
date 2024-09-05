@@ -170,7 +170,7 @@ function saveList() {
 
 function loadList() {
   if (localStorage.getItem('toDos') != null) {
-    let toDos = JSON.parse(localStorage.getItem('toDos'));
+    let toDos = JSON.parse(localStorage.getItem('toDos'));  
 
     for (let i = 0; i < toDos.length; i++) {
       let toDo = toDos[i];
