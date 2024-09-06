@@ -114,8 +114,8 @@ function saveList() {
 
         }
         console.log(toDos);
-        outputBox.innerHTML = localStorage.setItem('toDos', JSON.stringify(toDos));
         localStorage.setItem('toDos', JSON.stringify(toDos));
+        outputBox.innerHTML = toDos;
 
         break;
 
