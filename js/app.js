@@ -93,6 +93,9 @@ function emptyList() {
 let select = document.getElementById("my-lists");
 
 function saveList() {
+  let outpuSection = document.getElementById("view-list");
+  let outputBox = document.getElementById("show-list");
+  outpuSection.appendChild(outputBox);
   select.addEventListener("change", function (event) {
     console.log(event.target.value);
     switch (event.target.value) {
@@ -111,8 +114,9 @@ function saveList() {
 
         }
         console.log(toDos);
-
+        outputBox.innerHTML = localStorage.setItem('toDos', JSON.stringify(toDos));
         localStorage.setItem('toDos', JSON.stringify(toDos));
+
         break;
 
       case "spesa":
@@ -175,4 +179,3 @@ function loadList() {
   }
 }
 loadList();
-
