@@ -102,22 +102,17 @@ function saveList() {
     switch (event.target.value) {
       case "to-do":
         let toDos = [];
-
         for (let i = 0; i < toDoList.children.length; i++) {
           let toDo = toDoList.children.item(i);
-
           var toDoInfo = {
             "task": toDo.innerText,
             "completed": toDo.classList.contains('completed')
           };
-
           toDos.push(toDoInfo);
-
         }
         console.log(toDos);
         localStorage.setItem('toDos', JSON.stringify(toDos));
         outputBox.innerHTML = toDos;
-
         break;
 
       case "spesa":
@@ -134,7 +129,6 @@ function saveList() {
         localStorage.setItem('spesa', JSON.stringify(spesa));
         break;
 
-
       case "compiti":
         let compiti = [];
         for (let i = 0; i < toDoList.children.length; i++) {
@@ -148,8 +142,6 @@ function saveList() {
         console.log(compiti);
         localStorage.setItem('compiti', JSON.stringify(compiti));
         break;
-
-
 
       case "cose-da-fare":
         let coseDaFare = [];
