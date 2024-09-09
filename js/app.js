@@ -92,7 +92,6 @@ function emptyList() {
 }
 
 let select = document.getElementById("my-lists");
-
 function saveList() {
   let outpuSection = document.getElementById("view-list");
   let outputBox = document.getElementById("show-list");
@@ -157,7 +156,6 @@ function saveList() {
         localStorage.setItem('coseDaFare', JSON.stringify(coseDaFare));
         break;
     }
-
   });
 }
 
