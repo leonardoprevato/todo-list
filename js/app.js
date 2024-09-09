@@ -45,6 +45,7 @@ function newToDoItem(itemText, completed) {
 }
 
 
+
 //salvataggio automatico e aggiunta array nel localStorage
 
 
