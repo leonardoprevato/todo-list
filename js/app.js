@@ -2,7 +2,10 @@ var toDoEntryBox = document.getElementById('todo-entry-box');
 toDoEntryBox.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
-    addToDoItem();
+    if (toDoEntryBox.value !== "") {
+      addToDoItem()
+      saveList()
+    }
   }
 });
 
@@ -49,17 +52,6 @@ function newToDoItem(itemText, completed) {
 //salvataggio automatico e aggiunta array nel localStorage
 
 
-/* funzione timer */
-function timer() {
-  if (toDoEntryBox.value !== "") {
-    addToDoItem()
-    saveList()
-  }
-}
-setInterval(timer, 1000);
-
-/* funzione timer */
-
 function addToDoItem() {
   let itemText = toDoEntryBox.value;
   newToDoItem(itemText, false);
@@ -89,75 +81,82 @@ function emptyList() {
     toDoItems.item(0).remove();
   }
 
-}
+};
+
+let title = document.getElementById("title");
+let outpuSection = document.getElementById("view-list");
+let outputBox = document.getElementById("show-list");
+outpuSection.appendChild(outputBox);
+
 
 let select = document.getElementById("my-lists");
+
+
 function saveList() {
-  let outpuSection = document.getElementById("view-list");
-  let outputBox = document.getElementById("show-list");
-  outpuSection.appendChild(outputBox);
-  select.addEventListener("change", function (event) {
-    console.log(event.target.value);
-    switch (event.target.value) {
-      case "to-do":
-        let toDos = [];
-        for (let i = 0; i < toDoList.children.length; i++) {
-          let toDo = toDoList.children.item(i);
-          var toDoInfo = {
-            "task": toDo.innerText,
-            "completed": toDo.classList.contains('completed')
-          };
-          toDos.push(toDoInfo);
-        }
-        console.log(toDos);
-        localStorage.setItem('toDos', JSON.stringify(toDos));
-        outputBox.innerHTML = toDos;
-        break;
+  let options = select.options[select.selectedIndex].value;
+  switch (options) {
+    case "to-do":
+      let toDos = [];
+      for (let i = 0; i < toDoList.children.length; i++) {
+        let toDo = toDoList.children.item(i);
+        var toDoInfo = {
+          "task": toDo.innerText,
+          "completed": toDo.classList.contains('completed')
+        };
+        toDos.push(toDoInfo);
+      }
+      console.log(toDos);
+      localStorage.setItem('toDos', JSON.stringify(toDos));
+      outputBox.innerHTML = toDoInfo.task;
+      break;
 
-      case "spesa":
-        let spesa = [];
-        for (let i = 0; i < toDoList.children.length; i++) {
-          let toDo = toDoList.children.item(i);
-          var toDoInfo = {
-            "task": toDo.innerText,
-            "completed": toDo.classList.contains('completed')
-          };
-          spesa.push(toDoInfo);
-        }
-        console.log(spesa);
-        localStorage.setItem('spesa', JSON.stringify(spesa));
-        break;
+    case "spesa":
+      let spesa = [];
+      for (let i = 0; i < toDoList.children.length; i++) {
+        let toDo = toDoList.children.item(i);
+        var toDoInfo = {
+          "task": toDo.innerText,
+          "completed": toDo.classList.contains('completed')
+        };
+        spesa.push(toDoInfo);
+      }
+      console.log(spesa);
+      localStorage.setItem('spesa', JSON.stringify(spesa));
+      break;
 
-      case "compiti":
-        let compiti = [];
-        for (let i = 0; i < toDoList.children.length; i++) {
-          let toDo = toDoList.children.item(i);
-          var toDoInfo = {
-            "task": toDo.innerText,
-            "completed": toDo.classList.contains('completed')
-          };
-          compiti.push(toDoInfo);
-        }
-        console.log(compiti);
-        localStorage.setItem('compiti', JSON.stringify(compiti));
-        break;
+    case "compiti":
+      let compiti = [];
+      for (let i = 0; i < toDoList.children.length; i++) {
+        let toDo = toDoList.children.item(i);
+        var toDoInfo = {
+          "task": toDo.innerText,
+          "completed": toDo.classList.contains('completed')
+        };
+        compiti.push(toDoInfo);
+      }
+      console.log(compiti);
+      localStorage.setItem('compiti', JSON.stringify(compiti));
+      break;
 
-      case "cose-da-fare":
-        let coseDaFare = [];
-        for (let i = 0; i < toDoList.children.length; i++) {
-          let toDo = toDoList.children.item(i);
-          var toDoInfo = {
-            "task": toDo.innerText,
-            "completed": toDo.classList.contains('completed')
-          };
-          coseDaFare.push(toDoInfo);
-        }
-        console.log(coseDaFare);
-        localStorage.setItem('coseDaFare', JSON.stringify(coseDaFare));
-        break;
-    }
-  });
+    case "cose-da-fare":
+      let coseDaFare = [];
+      for (let i = 0; i < toDoList.children.length; i++) {
+        let toDo = toDoList.children.item(i);
+        var toDoInfo = {
+          "task": toDo.innerText,
+          "completed": toDo.classList.contains('completed')
+        };
+        coseDaFare.push(toDoInfo);
+      }
+      console.log(coseDaFare);
+
+      break;
+  }
 }
+
+
+let button = document.getElementById("button");
+
 
 function loadList() {
   if (localStorage.getItem('toDos') != null) {
