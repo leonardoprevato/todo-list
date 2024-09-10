@@ -104,10 +104,11 @@ function saveList() {
           "completed": toDo.classList.contains('completed')
         };
         toDos.push(toDoInfo);
+        outputBox.innerHTML = toDoInfo.task;
       }
       console.log(toDos);
       localStorage.setItem('toDos', JSON.stringify(toDos));
-      outputBox.innerHTML = toDoInfo.task;
+      /*  outputBox.innerHTML = localStorage.getItem("toDos"); */
       break;
 
     case "spesa":
@@ -122,6 +123,7 @@ function saveList() {
       }
       console.log(spesa);
       localStorage.setItem('spesa', JSON.stringify(spesa));
+      outputBox.innerHTML = localStorage.getItem("spesa");
       break;
 
     case "compiti":
