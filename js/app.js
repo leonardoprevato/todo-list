@@ -87,8 +87,8 @@ let title = document.getElementById("title");
 let outpuSection = document.getElementById("view-list");
 let outputBox = document.getElementById("show-list");
 outpuSection.appendChild(outputBox);
-
-
+let ordList = document.getElementById("ord-list")
+outputBox.appendChild(ordList);
 let select = document.getElementById("my-lists");
 
 
@@ -104,11 +104,10 @@ function saveList() {
           "completed": toDo.classList.contains('completed')
         };
         toDos.push(toDoInfo);
-        outputBox.innerHTML = toDoInfo.task;
       }
       console.log(toDos);
       localStorage.setItem('toDos', JSON.stringify(toDos));
-      /*  outputBox.innerHTML = localStorage.getItem("toDos"); */
+      outputBox.innerHTML = localStorage.getItem("toDos");
       break;
 
     case "spesa":
